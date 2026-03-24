@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "flopro-sdk"
+version = "0.1.0"
+description = "FloPro Core SDK"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+
+[project.urls]
+Homepage = "https://github.com/amzn/FloPro"
+
+[tool.hatch.envs.default]
+dependencies = [
+    "pytest",
+    "ruff",
+]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest -v"
+lint = "ruff check ."
+format-check = "ruff format --check ."
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+testpaths = ["tests"]
