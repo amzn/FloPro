@@ -1,0 +1,15 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "flopro-adk"
+version = "0.1.0"
+description = "FloPro Agent Development Kit"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+dependencies = ["flopro-sdk>=0.1.0"]
+
+[project.urls]
+Homepage = "https://github.com/amzn/FloPro"
