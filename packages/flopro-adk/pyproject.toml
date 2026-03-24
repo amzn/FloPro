@@ -13,3 +13,21 @@ dependencies = ["flopro-sdk>=0.1.0"]
 
 [project.urls]
 Homepage = "https://github.com/amzn/FloPro"
+
+[tool.hatch.envs.default]
+dependencies = [
+    "pytest",
+    "ruff",
+]
+pre-install-commands = [
+    "pip install -e {root:uri}/../flopro-sdk",
+]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest -v"
+lint = "ruff check ."
+format-check = "ruff format --check ."
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+testpaths = ["tests"]
