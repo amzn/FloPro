@@ -1,0 +1,20 @@
+site_name: Flo Pro
+site_description: Flo Pro SDK and ADK documentation
+repo_url: https://github.com/your-org/flo-pro
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["../python/flo-pro-sdk/src", "../python/flo-pro-adk/src"]
+
+nav:
+  - Home: index.md
+  - SDK:
+    - sdk/index.md
+  - ADK:
+    - adk/index.md
