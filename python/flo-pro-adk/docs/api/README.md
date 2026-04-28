@@ -2,18 +2,11 @@
 
 The Vendor Agent Development Kit (V-ADK) lets you build, test, and validate your Flo Pro negotiation agent locally. This reference covers every public class, function, and type you interact with.
 
-For a getting-started walkthrough, see the [README](../../README.md) or the [Vendor Guide](../vendor-guide.md).
+For a getting-started walkthrough, see the [README](../../README.md).
 
 ## Installation
 
-```bash
-pip install flo-pro-adk
-
-# With Xpress solver support (requires a FICO Xpress license):
-pip install flo-pro-adk[xpress]
-```
-
-This installs the V-ADK and the Flo Pro SDK (`flo_pro_sdk`) automatically.
+See the [Flo Pro ADK README](../../README.md#1-install) for install instructions.
 
 ## Quick Import Reference
 

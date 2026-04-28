@@ -7,18 +7,26 @@ Your agent and Amazon's agent iteratively negotiate purchase order (PO) quantiti
 ## Requirements
 
 - Python >= 3.11
-- FICO Xpress is optional — only needed if you use the solver framework
+- FICO Xpress via the `[xpress]` extra below. The `xpress` PyPI package ships
+  with FICO's free Community license (5000 rows+columns for LP/MIP — more than
+  enough for the built-in test scenarios).
 
 ## Quick Start
 
 ### 1. Install
 
-```bash
-pip install flo-pro-adk
+Neither `flo-pro-sdk` nor `flo-pro-adk` is on PyPI yet. Clone and install both
+from the local paths:
 
-# With Xpress solver (optional):
-pip install flo-pro-adk[xpress]
+```bash
+git clone https://github.com/amzn/FloPro.git
+cd FloPro
+pip install ./python/flo-pro-sdk "./python/flo-pro-adk[xpress]"
 ```
+
+The `[xpress]` extra is required for the built-in solver framework and for E2E
+tests against the simulated Amazon agent (Xpress-backed) — install it even if
+your own agent uses a different solver.
 
 ### 2. Implement Your Agent
 
@@ -136,14 +144,6 @@ The test suites include scenarios for different conditions:
 - **Demand spike** — elevated demand with higher penalty weights
 - **Supply constrained** — tighter supply with increased costs
 - **Non-convergence** — adversarial parameters to test robustness
-
-## Documentation
-
-See [docs/vendor-guide.md](docs/vendor-guide.md) for a detailed introduction to the V-ADK architecture and testing workflow.
-
-## Contributing
-
-See [DEVELOPING.md](DEVELOPING.md) for build instructions and development setup.
 
 ## Package Structure
 
