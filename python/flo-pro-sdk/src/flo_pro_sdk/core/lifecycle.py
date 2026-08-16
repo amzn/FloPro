@@ -154,6 +154,7 @@ class ProblemRunner:
         )
 
         iteration = startup_result.state.iteration
+        result = None
         while iteration < self.problem.max_iterations:
             result = coordinator_handler.run_iteration(iteration)
             if result.converged:
@@ -163,7 +164,12 @@ class ProblemRunner:
         # Ensure all fire-and-forget writes have landed before reading.
         store.flush()
 
-        final_state = store.get_state(result.iteration)
+        if result is None:
+            # Loop never executed (max_iterations <= initial iteration).
+            # Return the initial state that was just stored.
+            final_state = startup_result.state
+        else:
+            final_state = store.get_state(result.iteration)
         if final_state is None:
             raise RuntimeError(
                 f"Final state not found for iteration {result.iteration}"
