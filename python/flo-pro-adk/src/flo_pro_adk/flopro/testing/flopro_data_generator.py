@@ -157,14 +157,14 @@ class FloProSimulationDataGenerator(SimulationDataGenerator):
     def _resolve_retailer_cost_params(self) -> RetailerCostParams:
         """Merge scenario retailer_cost_params with defaults."""
         dp = self._get_domain_params()
-        overrides: RetailerCostParams = dp.get("retailer_cost_params", {})  # type: ignore[assignment]
+        overrides: RetailerCostParams = dp.get("retailer_cost_params") or {}  # type: ignore[assignment]
         merged: RetailerCostParams = {**_DEFAULT_RETAILER_COST_PARAMS, **overrides}  # type: ignore[typeddict-item]
         return merged
 
     def _resolve_vendor_cost_params(self) -> VendorCostParams:
         """Merge scenario vendor_cost_params with defaults."""
         dp = self._get_domain_params()
-        overrides: VendorCostParams = dp.get("vendor_cost_params", {})  # type: ignore[assignment]
+        overrides: VendorCostParams = dp.get("vendor_cost_params") or {}  # type: ignore[assignment]
         merged: VendorCostParams = {**_DEFAULT_VENDOR_COST_PARAMS, **overrides}  # type: ignore[typeddict-item]
         return merged
 
