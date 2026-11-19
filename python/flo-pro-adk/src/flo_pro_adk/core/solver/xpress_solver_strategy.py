@@ -3,7 +3,7 @@
 Builds LP/QP models using FICO Xpress. ADMM terms are constructed as
 native Xpress expressions. Supports both MAXIMIZE and MINIMIZE.
 
-Requires: pip install flo-pro-adk[xpress]
+Requires: the `xpress` package (pip install xpress)
 """
 
 from __future__ import annotations
@@ -177,7 +177,7 @@ class XpressSolverStrategy(SolverStrategy):
         except ImportError as exc:
             raise ImportError(
                 "xpress package not installed. Install via: "
-                "pip install flo-pro-adk[xpress]"
+                "pip install xpress"
             ) from exc
 
     def create_model(

@@ -11,8 +11,8 @@ sync: ## Sync all workspace dependencies
 	uv sync
 
 build: ## Build all packages
-	uv build --package flo-pro-sdk
-	uv build --package flo-pro-adk
+	uv build --package amzn-flo-pro-sdk
+	uv build --package amzn-flo-pro-adk
 
 test: sync ## Run tests for all packages
 	uv run pytest python/flo-pro-sdk/tests

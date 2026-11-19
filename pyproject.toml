@@ -3,21 +3,21 @@ name = "flo-pro-monorepo"
 version = "0.0.0"
 requires-python = ">=3.11"
 dependencies = [
-  "flo-pro-sdk",
-  "flo-pro-adk",
+  "amzn-flo-pro-sdk",
+  "amzn-flo-pro-adk",
 ]
 
 [project.optional-dependencies]
-ray = ["flo-pro-sdk[ray]"]
-dashboard = ["flo-pro-sdk[dashboard]"]
-all = ["flo-pro-sdk[ray,dashboard]", "flo-pro-adk"]
+ray = ["amzn-flo-pro-sdk[ray]"]
+dashboard = ["amzn-flo-pro-sdk[dashboard]"]
+all = ["amzn-flo-pro-sdk[ray,dashboard]", "amzn-flo-pro-adk"]
 
 [tool.uv.workspace]
 members = ["python/flo-pro-sdk", "python/flo-pro-adk"]
 
 [tool.uv.sources]
-flo-pro-sdk = { workspace = true }
-flo-pro-adk = { workspace = true }
+amzn-flo-pro-sdk = { workspace = true }
+amzn-flo-pro-adk = { workspace = true }
 
 [dependency-groups]
 dev = [

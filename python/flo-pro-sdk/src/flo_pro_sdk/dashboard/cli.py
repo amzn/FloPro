@@ -5,7 +5,11 @@ Usage::
     flo-dashboard /path/to/run_dir
     flo-dashboard /path/to/base_dir
     flo-dashboard /path/to/coordination_dir
-    flo-dashboard /path/to/run_dir --host 0.0.0.0 --port 9000
+    flo-dashboard /path/to/run_dir --port 9000
+
+The dashboard has no authentication and binds to 127.0.0.1 by default. To
+view it from another machine, forward the port over SSH
+(``ssh -L 9000:127.0.0.1:9000 <host>``) instead of binding to 0.0.0.0.
 """
 
 from __future__ import annotations
@@ -31,7 +35,10 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--host",
         default="127.0.0.1",
-        help="Bind address (default: 127.0.0.1).",
+        help=(
+            "Bind address (default: 127.0.0.1). The dashboard has no "
+            "authentication; use an SSH tunnel for remote access."
+        ),
     )
     parser.add_argument(
         "--port",
@@ -82,7 +89,7 @@ def main(argv: list[str] | None = None) -> None:
     except ImportError:
         print(
             "Error: dashboard dependencies not installed. "
-            "Install with: pip install flo-pro-sdk[dashboard]",
+            "Install with: pip install dash dash-bootstrap-components plotly",
             file=sys.stderr,
         )
         sys.exit(1)

@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "flo-pro-sdk"
+name = "amzn-flo-pro-sdk"
 dynamic = ["version"]
 readme = "README.md"
 requires-python = ">=3.11"

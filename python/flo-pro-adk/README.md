@@ -15,14 +15,23 @@ Your agent and Amazon's agent iteratively negotiate purchase order (PO) quantiti
 
 ### 1. Install
 
-Neither `flo-pro-sdk` nor `flo-pro-adk` is on PyPI yet. Clone and install both
-from the local paths:
+The V-ADK is distributed as `amzn-flo-pro-adk` and depends on the Flo Pro SDK,
+`amzn-flo-pro-sdk`. Neither package is published on PyPI yet, so clone the
+repository and install from your checkout:
 
 ```bash
 git clone https://github.com/amzn/FloPro.git
 cd FloPro
-pip install ./python/flo-pro-sdk "./python/flo-pro-adk[xpress]"
+pip install "./python/flo-pro-adk[xpress]"
 ```
+
+The ADK's `pyproject.toml` points at the SDK in `./python/flo-pro-sdk`, so pip
+and [uv](https://docs.astral.sh/uv/) (`uv pip install ./python/flo-pro-adk`)
+install it from your checkout and never look it up on a package index.
+
+> **Security:** Never install `flo-pro-sdk`, `flo-pro-adk`, or the `amzn-`
+> names from PyPI. This project doesn't publish there, so any package under
+> those names on PyPI is not ours.
 
 The `[xpress]` extra is required for the built-in solver framework and for E2E
 tests against the simulated Amazon agent (Xpress-backed) — install it even if

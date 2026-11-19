@@ -14,10 +14,64 @@ resolution-markers = [
 
 [manifest]
 members = [
-    "flo-pro-adk",
+    "amzn-flo-pro-adk",
+    "amzn-flo-pro-sdk",
     "flo-pro-monorepo",
-    "flo-pro-sdk",
 ]
+
+[[package]]
+name = "amzn-flo-pro-adk"
+source = { editable = "python/flo-pro-adk" }
+dependencies = [
+    { name = "amzn-flo-pro-sdk" },
+    { name = "numpy" },
+    { name = "pandas" },
+]
+
+[package.optional-dependencies]
+xpress = [
+    { name = "xpress" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "amzn-flo-pro-sdk", editable = "python/flo-pro-sdk" },
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "xpress", marker = "extra == 'xpress'" },
+]
+provides-extras = ["xpress"]
+
+[[package]]
+name = "amzn-flo-pro-sdk"
+source = { editable = "python/flo-pro-sdk" }
+dependencies = [
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "pyarrow" },
+]
+
+[package.optional-dependencies]
+dashboard = [
+    { name = "dash" },
+    { name = "dash-bootstrap-components" },
+    { name = "plotly" },
+]
+ray = [
+    { name = "ray", extra = ["client"] },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "dash", marker = "extra == 'dashboard'" },
+    { name = "dash-bootstrap-components", marker = "extra == 'dashboard'" },
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "plotly", marker = "extra == 'dashboard'" },
+    { name = "pyarrow" },
+    { name = "ray", extras = ["client"], marker = "extra == 'ray'" },
+]
+provides-extras = ["dashboard", "ray"]
 
 [[package]]
 name = "attrs"
@@ -238,47 +292,24 @@ wheels = [
 ]
 
 [[package]]
-name = "flo-pro-adk"
-source = { editable = "python/flo-pro-adk" }
-dependencies = [
-    { name = "flo-pro-sdk" },
-    { name = "numpy" },
-    { name = "pandas" },
-]
-
-[package.optional-dependencies]
-xpress = [
-    { name = "xpress" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "flo-pro-sdk", editable = "python/flo-pro-sdk" },
-    { name = "numpy" },
-    { name = "pandas" },
-    { name = "xpress", marker = "extra == 'xpress'" },
-]
-provides-extras = ["xpress"]
-
-[[package]]
 name = "flo-pro-monorepo"
 version = "0.0.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "flo-pro-adk" },
-    { name = "flo-pro-sdk" },
+    { name = "amzn-flo-pro-adk" },
+    { name = "amzn-flo-pro-sdk" },
 ]
 
 [package.optional-dependencies]
 all = [
-    { name = "flo-pro-adk" },
-    { name = "flo-pro-sdk", extra = ["dashboard", "ray"] },
+    { name = "amzn-flo-pro-adk" },
+    { name = "amzn-flo-pro-sdk", extra = ["dashboard", "ray"] },
 ]
 dashboard = [
-    { name = "flo-pro-sdk", extra = ["dashboard"] },
+    { name = "amzn-flo-pro-sdk", extra = ["dashboard"] },
 ]
 ray = [
-    { name = "flo-pro-sdk", extra = ["ray"] },
+    { name = "amzn-flo-pro-sdk", extra = ["ray"] },
 ]
 
 [package.dev-dependencies]
@@ -293,12 +324,12 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "flo-pro-adk", editable = "python/flo-pro-adk" },
-    { name = "flo-pro-adk", marker = "extra == 'all'", editable = "python/flo-pro-adk" },
-    { name = "flo-pro-sdk", editable = "python/flo-pro-sdk" },
-    { name = "flo-pro-sdk", extras = ["dashboard"], marker = "extra == 'dashboard'", editable = "python/flo-pro-sdk" },
-    { name = "flo-pro-sdk", extras = ["ray"], marker = "extra == 'ray'", editable = "python/flo-pro-sdk" },
-    { name = "flo-pro-sdk", extras = ["ray", "dashboard"], marker = "extra == 'all'", editable = "python/flo-pro-sdk" },
+    { name = "amzn-flo-pro-adk", editable = "python/flo-pro-adk" },
+    { name = "amzn-flo-pro-adk", marker = "extra == 'all'", editable = "python/flo-pro-adk" },
+    { name = "amzn-flo-pro-sdk", editable = "python/flo-pro-sdk" },
+    { name = "amzn-flo-pro-sdk", extras = ["dashboard"], marker = "extra == 'dashboard'", editable = "python/flo-pro-sdk" },
+    { name = "amzn-flo-pro-sdk", extras = ["ray"], marker = "extra == 'ray'", editable = "python/flo-pro-sdk" },
+    { name = "amzn-flo-pro-sdk", extras = ["ray", "dashboard"], marker = "extra == 'all'", editable = "python/flo-pro-sdk" },
 ]
 provides-extras = ["ray", "dashboard", "all"]
 
@@ -311,37 +342,6 @@ dev = [
     { name = "pytest" },
     { name = "ruff" },
 ]
-
-[[package]]
-name = "flo-pro-sdk"
-source = { editable = "python/flo-pro-sdk" }
-dependencies = [
-    { name = "numpy" },
-    { name = "pandas" },
-    { name = "pyarrow" },
-]
-
-[package.optional-dependencies]
-dashboard = [
-    { name = "dash" },
-    { name = "dash-bootstrap-components" },
-    { name = "plotly" },
-]
-ray = [
-    { name = "ray", extra = ["client"] },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "dash", marker = "extra == 'dashboard'" },
-    { name = "dash-bootstrap-components", marker = "extra == 'dashboard'" },
-    { name = "numpy" },
-    { name = "pandas" },
-    { name = "plotly", marker = "extra == 'dashboard'" },
-    { name = "pyarrow" },
-    { name = "ray", extras = ["client"], marker = "extra == 'ray'" },
-]
-provides-extras = ["dashboard", "ray"]
 
 [[package]]
 name = "ghp-import"
