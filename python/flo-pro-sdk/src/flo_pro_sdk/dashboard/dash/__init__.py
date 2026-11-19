@@ -5,5 +5,5 @@ try:
 except ImportError as e:
     raise ImportError(
         "Dashboard dependencies are required. "
-        "Install them with: pip install flo-pro-sdk[dashboard]"
+        "Install them with: pip install dash dash-bootstrap-components plotly"
     ) from e

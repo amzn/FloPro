@@ -3,18 +3,26 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "flo-pro-adk"
+name = "amzn-flo-pro-adk"
 dynamic = ["version"]
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-  "flo-pro-sdk",
+  # Path reference: pip and uv install the SDK from this repository and
+  # never query a package index for it. Built wheels record a local file
+  # path for the SDK, so treat them as non-distributable. Replace with a
+  # plain requirement before publishing to PyPI.
+  "amzn-flo-pro-sdk @ {root:parent:uri}/flo-pro-sdk",
   "numpy",
   "pandas",
 ]
 
 [project.optional-dependencies]
 xpress = ["xpress"]
+
+[tool.hatch.metadata]
+# Required for the path reference to the SDK above.
+allow-direct-references = true
 
 [tool.hatch.version]
 path = "../../VERSION"
@@ -46,3 +54,8 @@ isort.known-first-party = ["flo_pro_adk"]
 [[tool.mypy.overrides]]
 module = ["xpress"]
 ignore_missing_imports = true
+
+# uv: resolve the SDK as an editable workspace member (as in the root
+# pyproject.toml) rather than through the path reference above.
+[tool.uv.sources]
+amzn-flo-pro-sdk = { workspace = true }

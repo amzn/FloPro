@@ -5,7 +5,7 @@ try:
 except ImportError as e:
     raise ImportError(
         "Ray is required for the Ray execution engine. "
-        "Install it with: pip install flo-pro-sdk[ray]"
+        "Install it with: pip install 'ray[client]'"
     ) from e
 
 from flo_pro_sdk.engine.ray.engine import RayExecutionEngine

@@ -29,7 +29,7 @@ from flo_pro_adk.flopro.testing.simulation_suite import FloProSimulationSuite
 from flo_pro_adk.core.data.pandas_data_loader import PandasDataLoader
 ```
 
-The V-ADK (`flo_pro_adk`) depends on the Flo Pro SDK (`flo_pro_sdk`), which is installed automatically. Core types like `AgentDefinition`, `Solution`, and `Objective` come from the SDK; everything else comes from the V-ADK.
+The V-ADK (`flo_pro_adk`) depends on the Flo Pro SDK (`flo_pro_sdk`). The ADK installs the SDK from your checkout; see the [Flo Pro ADK README](../../README.md#1-install). Core types like `AgentDefinition`, `Solution`, and `Objective` come from the SDK; everything else comes from the V-ADK.
 
 ---
 
@@ -794,7 +794,7 @@ class XpressSolverStrategy(SolverStrategy):
 
 **Raises:** `ImportError` if the `xpress` package is not installed.
 
-**Install:** `pip install flo-pro-adk[xpress]`
+**Install:** use the `[xpress]` extra when installing the V-ADK from a local clone. See the [Flo Pro ADK README](../../README.md#1-install).
 
 **Example:**
 
